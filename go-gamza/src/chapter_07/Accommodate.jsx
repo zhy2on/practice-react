@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
+import { useCallback } from "react";
 import useCounter from "./useCounter";
 
 const MAX_CAPACITY = 10;
@@ -14,9 +15,14 @@ function Accommodate(props) {
 	});
 
 	useEffect(() => {
+		increaseCount();
+		console.log(`Current count value: ${count}`);
+	});
+
+	useEffect(() => {
 		setIsFull(count >= MAX_CAPACITY);
 		console.log(`Current count value: ${count}`);
-	}, [count]);
+	});
 
 	return (
 		<div style={{ padding: 16 }}>

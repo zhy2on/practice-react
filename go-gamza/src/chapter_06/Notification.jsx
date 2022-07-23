@@ -1,4 +1,5 @@
 import React from "react";
+import {unmountComponentAtNode} from 'react-dom';
 
 const styles = {
 	wrapper: {
@@ -20,6 +21,7 @@ class Notification extends React.Component {
 		super(props);
 
 		this.state = {};
+		this.handleClick = this.handleClick.bind(this)
 	}
 
 	componentDidMount() {
@@ -34,10 +36,14 @@ class Notification extends React.Component {
 		console.log(`${this.props.id} WillUnmount() called`);
 	}
 
+	handleClick() {
+		unmountComponentAtNode(document.getElementById('root'));
+	}
 	render() {
 		return (
 			<div style={styles.wrapper}>
 				<span style={styles.messageText}>{this.props.message}</span>
+				{/* <button onClick={this.handleClick}>Unmount</button> */}
 			</div>
 		);
 	}
